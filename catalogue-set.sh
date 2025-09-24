@@ -1,7 +1,5 @@
 #!/bin/bash
 
-
-USERID=$(id -u)
 R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
@@ -13,7 +11,7 @@ SCRIPT_DIR=$PWD
 MONGODB_HOST="172.31.23.52"
 LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME.log"
 
-
+USERID=$(id -u)
 
 mkdir -p $LOGS_FOLDER
 echo "Script started executed at: $(date)" | tee -a $LOG_FILE
