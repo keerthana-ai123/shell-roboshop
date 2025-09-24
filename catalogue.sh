@@ -79,10 +79,7 @@ VALIDATE $? "Copy mongo repo"
 dnf install mongodb-mongosh -y &>>$LOG_FILE
 VALIDATE $? "Install MongoDB client"
 
-# Debug info
-echo "MongoDB Host: $MONGODB_HOST"
-echo "Checking if /app/db/master-data.js exists..."
-ls -l /app/db/master-data.js || { echo "ERROR: master-data.js not found"; exit 1; }
+
 mongosh --host $MONGODB_HOST </app/db/master-data.js &>>$LOG_FILE
 VALIDATE $? "Load catalogue products"
 
