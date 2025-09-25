@@ -27,11 +27,15 @@ else
 fi
 }
 
-dnf install mysql-server -y
-systemctl enable mysqld
+dnf install mysql-server -
+VALIDATE $? "Installing MySQL Server"
+systemctl enable 
+VALIDATE $? "Enabling MySQL Server"
 systemctl start mysqld  
-mysql_secure_installation --set-root-pass RoboShop@1
+VALIDATE $? "Starting MySQL Server"
 
+mysql_secure_installation --set-root-pass RoboShop@1
+VALIDATE $? "Setting up Root password"
 
 END_TIME=$(date +%s)
 TOTAL_TIME=$(( $END_TIME - $START_TIME ))
