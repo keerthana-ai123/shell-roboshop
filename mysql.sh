@@ -27,7 +27,7 @@ else
 fi
 }
 
-dnf install mysql-server -
+dnf install mysql-server -y
 VALIDATE $? "Installing MySQL Server"
 systemctl enable 
 VALIDATE $? "Enabling MySQL Server"
