@@ -10,7 +10,7 @@ SCRIPT_NAME=$( echo $0 | cut -d "." -f1 )
 LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME.log"
 
 USERID=$(id -u)
-
+START_TIME=$(date +%s)
 mkdir -p $LOGS_FOLDER
 echo "Script started executed at: $(date)" | tee -a $LOG_FILE
 if [ $USERID -ne 0 ]; then
@@ -41,3 +41,7 @@ systemctl enable redis &>>$LOG_FILE
 VALIDATE $? "Enabling Redis" 
 systemctl start redis &>>$LOG_FILE
 VALIDATE $? "Starting Redis"
+
+END_TIME=$(date +%s)
+TOTAL_TIME=$(( $END_TIME - $START_TIME))
+echo -e "Script Executed in: $Y $TOTAL_TIME Seconds $N"
